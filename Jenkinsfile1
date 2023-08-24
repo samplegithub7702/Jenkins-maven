@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    stages {
+        stage('Compile and Clean') {
+            steps {
+                sh "mvn clean compile"
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "mvn package"
+            }
+        }
+        stage('Snyk Scan') {
+            steps {
+                withCredentials([string(credentialsId: 'token-snyk', variable: 'SNYK_TOKEN')]) {
+                    script {
+                        def snykOutput = sh(script: "snyk test --all-projects --all-projects", returnStdout: true)
+                        echo snykOutput
+                        if (snykOutput.contains('Known')) {
+                            currentBuild.result = 'FAILURE'
+                            error("Snyk found vulnerabilities")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
