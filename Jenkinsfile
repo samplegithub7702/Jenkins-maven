@@ -36,7 +36,7 @@ pipeline {
         stage('Quality Gate Check') {
             steps {
                 script {
-                    def qualityGateStatus = sh(script: 'curl -s -u sqp_c2a66a377d74ae653b1bd6e0ed5de78bbdd8cf38: -X GET "http://54.183.208.209:9000/api/qualitygates/project_status?projectKey=sonarqube"', returnStdout: true).trim()
+                    def qualityGateStatus = sh(script: 'curl -s -u sqp_c2a66a377d74ae653b1bd6e0ed5de78bbdd8cf38: -X GET "http://35.92.194.232:9000/api/qualitygates/project_status?projectKey=sonarqube"', returnStdout: true).trim()
                     echo "Quality Gate Status: $qualityGateStatus"
                     if (qualityGateStatus.contains('ERROR') || qualityGateStatus.contains('WARN')) {
                         currentBuild.result = 'FAILURE'
