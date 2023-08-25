@@ -28,7 +28,7 @@ pipeline {
                     sh "mvn sonar:sonar " +
                        "-Dsonar.projectKey=newproject " +
                        "-Dsonar.host.url=http://35.89.25.202:9000 " +
-                       "-Dsonar.login=sqp_c2a66a377d74ae653b1bd6e0ed5de78bbdd8cf38"
+                       "-Dsonar.login=sqp_fe192cf5f83ca60da016c5337dd9708b22bcf165"
                     echo 'SonarQube analysis complete'
                 }
             }
