@@ -14,7 +14,7 @@
         <!-- SonarQube Properties -->
         <sonar.host.url>http://35.89.25.202:9000</sonar.host.url>
         <sonar.login>sqp_fe192cf5f83ca60da016c5337dd9708b22bcf165</sonar.login>
-        <sonar.projectKey>sonarqube</sonar.projectKey>
+        <sonar.projectKey>newproject</sonar.projectKey>
     </properties>
 
     <repositories>
