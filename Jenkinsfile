@@ -25,11 +25,12 @@ pipeline {
             steps {
                 script {
                     echo 'Running SonarQube analysis'
-                    sh "mvn sonar:sonar " +
-                       "-Dsonar.projectKey=sample " +
-                       "-Dsonar.host.url=http://18.236.230.96:9000 " +
-                       "-Dsonar.login=sqp_cb33f2c5dbfafe530c5ebf9288afb5370ed4d702
-"
+                    sh '''
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=sample \
+                        -Dsonar.host.url=http://18.236.230.96:9000 \
+                        -Dsonar.login=sqp_cb33f2c5dbfafe530c5ebf9288afb5370ed4d702
+                    '''
                     echo 'SonarQube analysis complete'
                 }
             }
@@ -37,8 +38,7 @@ pipeline {
         stage('Quality Gate Check') {
             steps {
                 script {
-                    def qualityGateStatus = sh(script: 'curl -s -u sqp_cb33f2c5dbfafe530c5ebf9288afb5370ed4d702
-: -X GET "http://18.236.230.96:9000/api/qualitygates/project_status?projectKey=sample"', returnStdout: true).trim()
+                    def qualityGateStatus = sh(script: 'curl -s -u sqp_cb33f2c5dbfafe530c5ebf9288afb5370ed4d702: -X GET "http://18.236.230.96:9000/api/qualitygates/project_status?projectKey=sample"', returnStdout: true).trim()
                     echo "Quality Gate Status: $qualityGateStatus"
                     if (qualityGateStatus.contains('ERROR') || qualityGateStatus.contains('WARN')) {
                         currentBuild.result = 'FAILURE'
