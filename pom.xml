@@ -12,9 +12,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         
         <!-- SonarQube Properties -->
-        <sonar.host.url>http://35.89.25.202:9000</sonar.host.url>
-        <sonar.login>sqp_fe192cf5f83ca60da016c5337dd9708b22bcf165</sonar.login>
-        <sonar.projectKey>newproject</sonar.projectKey>
+        <sonar.host.url>http://18.236.230.96:9000</sonar.host.url>
+        <sonar.login>sqp_cb33f2c5dbfafe530c5ebf9288afb5370ed4d702</sonar.login>
+        <sonar.projectKey>sample</sonar.projectKey>
     </properties>
 
     <repositories>
